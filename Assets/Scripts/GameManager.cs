@@ -33,11 +33,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         PressingMouseButton();
-        for(int i = 0; i < _projectileArray.Count; i++)
-        {
-            print(_projectileArray[i]);
-        }
-        print(_projectileArray.Count);
     }
 
     private void PressingMouseButton()
@@ -107,5 +102,16 @@ public class GameManager : MonoBehaviour
     {
         _score++;
         _textMesh.text = _score.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        Tile.addCoin -= WriteScoreCoin;
+        Coin.addCoin -= WriteScoreCoin;
+        Block.deleteProjectile -= RemoveFromArray;
+        Gun.addNewProjectile -= FillProjectileArray;
+        Fine.takeAwayProjectile -= GiveCommandTakeAwayProjectile;
+        Bonus.giveProjectile -= CommandGiveProjectile;
+        Door.wonPopUp -= OpenWonPopup;
     }
 }
