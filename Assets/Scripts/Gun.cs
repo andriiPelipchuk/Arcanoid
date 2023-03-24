@@ -45,6 +45,7 @@ public class Gun : MonoBehaviour
             _textMesh.text = i.ToString();
             yield return new WaitForSeconds(0.2f);
         }
+        _textMesh.text = _projectileNumber.ToString();
         _textMesh.gameObject.SetActive(false);
     }
 
